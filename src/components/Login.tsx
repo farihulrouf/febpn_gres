@@ -17,8 +17,9 @@ const LoginPage = () => {
         setSuccessMessage('');
 
         try {
-            const data = await loginUser(username, password); // Menggunakan username dan password
+            const { token } = await loginUser(username, password); // Menggunakan username dan password
             localStorage.setItem('username', username); // Simpan username di localStorage
+            localStorage.setItem('token', token); // Simpan token di localStorage
             setSuccessMessage('Login successful!');
             // Navigasi ke halaman dashboard setelah login
             window.location.href = '/'; // Sesuaikan dengan rute dashboard Anda
@@ -26,7 +27,6 @@ const LoginPage = () => {
             setError((err as Error).message);
         }
     };
-
 
     return (
         <div className="flex justify-center items-center h-screen">
